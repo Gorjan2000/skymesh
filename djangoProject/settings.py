@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-eh8^$f333dc^t1cjtx4cuj+h11*4!&^=zpsmcstv1e75!up^y^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,11 +87,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'skymesh-db',
-        'USER': 'skymesh',
-        'PASSWORD': 'Spirovski@2000',
-        'HOST': 'skymesh.mysql.pythonanywhere-services.com',
+        'USER': 'gorjan',
+        'PASSWORD': 'gorjan',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
+}
+
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config()
 }
 
 

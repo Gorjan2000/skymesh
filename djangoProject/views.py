@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
+
 @login_required
 def index(request):
     url = 'https://eu1.cloud.thethings.network/api/v3/as/applications/ligh-intensity-sensor/devices/eui-2cf7f1c04490006e/packages/storage/uplink_message'
@@ -34,7 +35,8 @@ def index(request):
                     latest_received_at = received_at
                     latest_light_intensity = value[0]
 
-        light_intensities = sorted(light_intensities, key=lambda x: datetime.strptime(x[1], '%H:%M:%S %d-%m-%Y'), reverse=True)
+        light_intensities = sorted(light_intensities, key=lambda x: datetime.strptime(x[1], '%H:%M:%S %d-%m-%Y'),
+                                   reverse=True)
 
         context = {
             'latest_light_intensity': latest_light_intensity,

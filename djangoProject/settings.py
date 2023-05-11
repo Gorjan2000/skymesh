@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-eh8^$f333dc^t1cjtx4cuj+h11*4!&^=zpsmcstv1e75!up^y^
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_COOKIE_DOMAIN = '.azurewebsites.net'
 
 
 # Application definition

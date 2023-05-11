@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
 
-# @login_required
+@login_required
 @method_decorator(csrf_exempt, name='dispatch')
 def index(request):
     url = 'https://eu1.cloud.thethings.network/api/v3/as/applications/ligh-intensity-sensor/devices/eui-2cf7f1c04490006e/packages/storage/uplink_message'

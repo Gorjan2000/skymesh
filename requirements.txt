@@ -1,5 +1,6 @@
 Django
 bootstrap4
 django_tables2
-requests==2.30.0
 datetime
+requests==2.30.0
+

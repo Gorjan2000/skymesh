@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
 
-@login_required
+# @login_required
 def index(request):
     url = 'https://eu1.cloud.thethings.network/api/v3/as/applications/ligh-intensity-sensor/devices/eui-2cf7f1c04490006e/packages/storage/uplink_message'
     headers = {

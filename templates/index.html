@@ -169,10 +169,10 @@
         <div>
             <p id="welcomeUsername">Welcome, User</p>
 {#            <p id="welcomeUsername">Welcome, {{ user.username }}</p>#}
-             <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-primary" type="submit">Logout</button>
-            </form>
+{#             <form action="{% url 'logout' %}" method="post">#}
+{#                {% csrf_token %}#}
+{#                <button class="btn btn-primary" type="submit">Logout</button>#}
+{#            </form>#}
         </div>
     </header>
     {% block content %}

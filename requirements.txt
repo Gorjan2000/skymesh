@@ -1,5 +1,5 @@
 Django==4.2.1
-bootstrap4
+django-bootstrap4==23.1
 django_tables2
 datetime
 requests==2.30.0

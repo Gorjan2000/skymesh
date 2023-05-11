@@ -90,13 +90,12 @@
   </head>
   <body>
   <div class="container">
-  <header>
-{#        <img src="{% static 'logo-black.png' %}" alt="Logo" id="logo">#}
+    <header>
       <img src="https://raw.githubusercontent.com/Gorjan2000/skymesh/master/static/logo-black.png" alt="Logo" id="logo"/>
     </header>
     {% block content %}
       <form method="post">
-            <h2>Login</h2>
+          <h2>Login</h2>
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Login</button>

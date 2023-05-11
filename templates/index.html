@@ -164,16 +164,15 @@
 <body>
 <div class="container">
 
-<header>
-{#        <img src="{% static '../static/logo-black.png' %}" alt="Logo" id="logo">#}
+    <header>
     <img src="https://raw.githubusercontent.com/Gorjan2000/skymesh/master/static/logo-black.png" alt="Logo" id="logo"/>
         <div>
             <p id="welcomeUsername">Welcome, User</p>
 {#            <p id="welcomeUsername">Welcome, {{ user.username }}</p>#}
-{#             <form action="{% url 'logout' %}" method="post">#}
-{#                {% csrf_token %}#}
-{#                <button class="btn btn-primary" type="submit">Logout</button>#}
-{#            </form>#}
+             <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">Logout</button>
+            </form>
         </div>
     </header>
     {% block content %}

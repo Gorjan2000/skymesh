@@ -1,4 +1,4 @@
-Django
+Django==4.2.1
 bootstrap4
 django_tables2
 datetime

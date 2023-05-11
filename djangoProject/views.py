@@ -38,11 +38,16 @@ def index(request):
         light_intensities = sorted(light_intensities, key=lambda x: datetime.strptime(x[1], '%H:%M:%S %d-%m-%Y'),
                                    reverse=True)
 
-        context = {
-            'latest_light_intensity': latest_light_intensity,
-            'latest_received_at': latest_received_at.strftime('%H:%M:%S %d-%m-%Y'),
-            'light_intensity': light_intensities
-        }
+        if latest_received_at is not None or latest_light_intensity is not None:
+            context = {
+                'latest_light_intensity': latest_light_intensity,
+                'latest_received_at': latest_received_at.strftime('%H:%M:%S %d-%m-%Y'),
+                'light_intensity': light_intensities
+            }
+        else:
+            context = {
+
+            }
 
         return render(request, 'index.html', context)
 

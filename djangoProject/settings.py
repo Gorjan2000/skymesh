@@ -34,8 +34,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://skymesh.azurewebsites.net',
 ]
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -142,7 +140,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "djangoProject/static",
+    BASE_DIR / "static",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

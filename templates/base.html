@@ -11,6 +11,7 @@
   {% else %}
     <a href="{% url 'login' %}">Login</a>
   {% endif %}
+  {% csrf_token %}
   {% block content %}
   {% endblock %}
 </body>

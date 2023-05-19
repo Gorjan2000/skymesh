@@ -26,15 +26,16 @@ SECRET_KEY = 'django-insecure-eh8^$f333dc^t1cjtx4cuj+h11*4!&^=zpsmcstv1e75!up^y^
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_COOKIE_DOMAIN = ['*']
+# CSRF_COOKIE_DOMAIN = [
+#     '.azurewebsites.net',
+#     '.com',
+#     ]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://skymesh.azurewebsites.net',
-#     'https://skymesh-iot.azurewebsites.net',
-#     'https://skymesh-iot.com',
-# ]
-
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    'https://skymesh.azurewebsites.net',
+    'https://skymesh-iot.azurewebsites.net',
+    'https://skymesh-iot.io',
+]
 
 # Application definition
 

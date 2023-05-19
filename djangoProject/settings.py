@@ -34,7 +34,7 @@ CSRF_COOKIE_DOMAIN = [
 CSRF_TRUSTED_ORIGINS = [
     'https://skymesh.azurewebsites.net',
     'https://skymesh-iot.azurewebsites.net',
-    'https://skymesh-iot.com'
+    'https://skymesh-iot.com',
 ]
 
 # Application definition

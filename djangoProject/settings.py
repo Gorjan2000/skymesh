@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_DOMAIN = [
     '.azurewebsites.net',
+    '.com'
     ]
 
 CSRF_TRUSTED_ORIGINS = [

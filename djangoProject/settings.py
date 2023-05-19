@@ -32,8 +32,8 @@ ALLOWED_HOSTS = ['*']
 #     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://skymesh.azurewebsites.net',
     'https://skymesh-iot.azurewebsites.net',
+    'https://skymesh.azurewebsites.net',
     'https://skymesh-iot.io',
 ]
 

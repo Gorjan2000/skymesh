@@ -169,8 +169,7 @@
     {% block content %}
 
         <h1>Soil Parameters</h1>
-        <h2>Node ID - 4</h2>
-
+        <h2>Node ID - 1</h2>
 {#        <ul>#}
 {#            {% for parameter, value in soil_parameters.items %}#}
 {#                <li>{{ parameter }}: {{ value }}</li>#}
@@ -181,15 +180,19 @@
            {% if soil_parameters %}
     <div class="row">
         {% for parameter, value in soil_parameters.items %}
-            {% if parameter != 'Box Temperature' and parameter != 'Box Humidity' and parameter != 'Node ID'%}
+            {% if parameter != 'Node ID' and parameter != 'Air Temperature' and parameter != 'Air Humidity' and parameter != 'Location'%}
                 <div class="col-sm-4">
                     <div class="card info-card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                {% if parameter == 'Timestamp' %}
-                                    <h3>DateTime</h3>
+                                {% if parameter == 'Box Temperature' %}
+                                    <h3>Air Temperature</h3>
+                                {% else %}
+                                    {% if parameter == 'Box Humidity' %}
+                                    <h3>Air Humidity</h3>
                                 {% else %}
                                     <h3>{{ parameter }}</h3>
+                                        {% endif %}
                                 {% endif %}
                                 <h5 class="card-title">{{ value }}</h5>
                             </div>
@@ -202,7 +205,6 @@
 {% else %}
     <p>No soil parameter data available.</p>
 {% endif %}
-
 
 
 

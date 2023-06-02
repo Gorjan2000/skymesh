@@ -6,6 +6,7 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from djangoProject.scraper import scrape_soil_parameters
 
 
 @login_required
@@ -58,3 +59,26 @@ def index(request):
     else:
         error_message = f"Error: {response.status_code}"
         return render(request, 'error.html', {'error_message': error_message})
+
+
+def scrape_view(request):
+    # URL of the website to scrape
+    url = "http://fixigoweb.somee.com"
+
+    # Send a GET request to the website
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        # Extract the HTML code from the response
+        html_code = response.content
+
+        # Call the scrape_soil_parameters function
+        soil_parameters = scrape_soil_parameters(html_code)
+
+        # Pass the parameters to the template
+        context = {'soil_parameters': soil_parameters}
+        return render(request, 'scrape_template.html', context)
+    else:
+        # Handle the case when the website is not accessible or returns an error
+        error_message = f"Failed to fetch HTML: {response.status_code} {response.reason}"
+        return render(request, 'error_template.html', {'error_message': error_message})

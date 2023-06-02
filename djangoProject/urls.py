@@ -27,4 +27,5 @@ urlpatterns = [
     path('', views.index, name='/'),
     path('index/', views.index, name='index'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('soil/', views.scrape_view, name='scrape'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

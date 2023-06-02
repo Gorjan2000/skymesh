@@ -61,6 +61,7 @@ def index(request):
         return render(request, 'error.html', {'error_message': error_message})
 
 
+@login_required
 def scrape_view(request):
     # URL of the website to scrape
     url = "http://fixigoweb.somee.com"

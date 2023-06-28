@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tables2',
     'bootstrap4',
+    'djangoProject',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +90,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'mysqlFixigo': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fixigo',
+        'USER': 'gorjan',
+        'PASSWORD': 'Spirovski@123',
+        'HOST': 'db4free.net',
+        'PORT': '3306',
+    },
 }
 
 # DATABASES = {
@@ -140,13 +149,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# STATIC_URL = '/static/'
+
 #
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 # ]
 #
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # settings.py
 STATIC_URL = '/static/'

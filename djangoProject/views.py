@@ -1,12 +1,35 @@
 import requests
-import json
-from django.shortcuts import render
+from django.db import connections
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from djangoProject.scraper import scrape_soil_parameters
+from django.shortcuts import render
+from .models import *
+import json
+from django.core.serializers import serialize
+
+
+def test_connection(request):
+    # Get the 'default' database connection
+    connection = connections['mysqlFixigo']
+
+    # Test the connection
+    try:
+        connection.ensure_connection()
+        connection_status = "Connection successful!"
+    except Exception as e:
+        connection_status = f"Connection failed: {str(e)}"
+
+    # Prepare the context data to be passed to the template
+    context = {
+        'connection_status': connection_status
+    }
+
+    # Render the template with the context data
+    return render(request, 'test_connection.html', context)
 
 
 @login_required
@@ -83,3 +106,18 @@ def scrape_view(request):
         # Handle the case when the website is not accessible or returns an error
         error_message = f"Failed to fetch HTML: {response.status_code} {response.reason}"
         return render(request, 'error_template.html', {'error_message': error_message})
+
+
+def location(request):
+    locations = Location.objects.using('mysqlFixigo').all()
+    context = {
+        'locations': locations
+    }
+    return render(request, 'location.html', context)
+
+
+def location_map(request):
+    locations = Location.objects.using('mysqlFixigo').all()
+    locations_json = serialize('json', locations)
+    context = {'locations_json': locations_json}
+    return render(request, 'location_map.html', context)

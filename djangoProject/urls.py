@@ -20,6 +20,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
@@ -28,4 +29,7 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('soil/', views.scrape_view, name='scrape'),
+    path('test/', views.test_connection, name='test_connection'),
+    path('locations/', views.location, name='location'),
+    path('map/', views.location_map, name='location_map'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

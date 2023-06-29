@@ -10,7 +10,10 @@ from django.shortcuts import render
 from .models import *
 import json
 from django.core.serializers import serialize
-
+import datetime
+from django.utils import timezone
+from django import template
+from datetime import datetime
 
 def test_connection(request):
     # Get the 'default' database connection
@@ -84,7 +87,9 @@ def index(request):
         return render(request, 'error.html', {'error_message': error_message})
 
 
+
 @login_required
+@method_decorator(csrf_exempt, name='dispatch')
 def scrape_view(request):
     # URL of the website to scrape
     url = "http://fixigoweb.somee.com"
@@ -108,16 +113,24 @@ def scrape_view(request):
         return render(request, 'error_template.html', {'error_message': error_message})
 
 
+@login_required
+@method_decorator(csrf_exempt, name='dispatch')
 def location(request):
     locations = Location.objects.using('mysqlFixigo').all()
+    for location in locations:
+        location.datetime = datetime.strptime(location.datetime, "%Y-%m-%d %H:%M:%S")
     context = {
         'locations': locations
     }
     return render(request, 'location.html', context)
 
 
+@login_required
+@method_decorator(csrf_exempt, name='dispatch')
 def location_map(request):
     locations = Location.objects.using('mysqlFixigo').all()
+    for location in locations:
+        location.datetime = datetime.strptime(location.datetime, "%Y-%m-%d %H:%M:%S")
     locations_json = serialize('json', locations)
     context = {'locations_json': locations_json}
     return render(request, 'location_map.html', context)

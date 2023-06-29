@@ -65,6 +65,7 @@
             border: none;
             border-radius: 4px;
             transition: background-color 0.3s ease;
+            text-decoration: none;
         }
 
         button:hover {
@@ -80,6 +81,7 @@
             background-color: #007bff;
             border-color: #007bff;
             color: #fff;
+            text-decoration: none;
         }
 
         .btn-primary:hover {
@@ -158,16 +160,31 @@
             margin-right: 10px;
         }
 
+         a{
+            background: white;
+      text-decoration: none;
+        }
     </style>
+
 
 </head>
 <body>
 <div class="container">
 
-    <header>
+<header>
     <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo"/>
         <div>
 {#            <p id="welcomeUsername">Welcome, User</p>#}
+            <div class="navbar-items">
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'index' %}">Light</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'scrape' %}">Soil</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location' %}">Location Table</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location_map' %}">GPS Map</a></button>
+                &emsp;
+            </div>
             <p id="welcomeUsername">Welcome, {{ user.username }}</p>
              <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
@@ -175,6 +192,7 @@
             </form>
         </div>
     </header>
+
     {% block content %}
 
         {% if latest_light_intensity %}

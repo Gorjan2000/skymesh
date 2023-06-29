@@ -11,6 +11,7 @@
     <title>SkyMesh</title>
 
     <style>
+
         body {
             font-family: sans-serif;
             margin: 0;
@@ -149,18 +150,42 @@
         box-sizing: border-box;
         padding: 10px;
     }
-
+  a{
+            background: white;
+      text-decoration: none;
+        }
     </style>
 
 </head>
 <body>
 <div class="container">
 
-    <header>
+{#    <header>#}
+{#    <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo"/>#}
+{#        <div>#}
+{#            <p id="welcomeUsername">Welcome, {{ user.username }}</p>#}
+{#            <form action="{% url 'logout' %}" method="post">#}
+{#                {% csrf_token %}#}
+{#                <button class="btn btn-primary" type="submit">Logout</button>#}
+{#            </form>#}
+{#        </div>#}
+{#    </header>#}
+<header>
     <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo"/>
         <div>
+{#            <p id="welcomeUsername">Welcome, User</p>#}
+            <div class="navbar-items">
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'index' %}">Light</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'scrape' %}">Soil</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location' %}">Location Table</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location_map' %}">GPS Map</a></button>
+                &emsp;
+            </div>
             <p id="welcomeUsername">Welcome, {{ user.username }}</p>
-            <form action="{% url 'logout' %}" method="post">
+             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-primary" type="submit">Logout</button>
             </form>
@@ -175,7 +200,6 @@
 {#                <li>{{ parameter }}: {{ value }}</li>#}
 {#            {% endfor %}#}
 {#        </ul>#}
-
 
            {% if soil_parameters %}
     <div class="row">

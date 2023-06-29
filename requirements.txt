@@ -4,3 +4,4 @@ django_tables2
 datetime~=5.1
 requests~=2.31.0
 beautifulsoup4~=4.12.2
+mysqlclient==2.2.0

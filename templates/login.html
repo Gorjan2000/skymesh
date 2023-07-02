@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      {% load static %}
+<head>
+    {% load static %}
     <meta charset="utf-8">
     <title>Login To SkyMesh</title>
     <style>
-        body{
+        body {
             font-family: sans-serif;
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 960px;
             margin: auto;
             padding: 20px;
         }
+
         form {
-          max-width: 400px;
-          margin:20px auto;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          padding: 20px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          background-color: #f5f5f5;
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f5f5f5;
         }
 
         h2 {
-          font-size: 24px;
-          margin-bottom: 20px;
-          color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007bff;
         }
 
         input[type="text"],
         input[type="password"] {
-          padding: 10px;
-          margin-bottom: 5px;
-          width: 100%;
-          box-sizing: border-box;
-          border-radius: 5px;
-          border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
         button {
@@ -61,7 +63,6 @@
         }
 
         form {
-
             text-align: center;
         }
 
@@ -75,6 +76,7 @@
             background-color: #0069d9;
             border-color: #0062cc;
         }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -84,23 +86,137 @@
 
         header img {
             height: 50px;
+            max-width: 100%;
         }
 
+        @media only screen and (max-width: 600px) {
+            form {
+                max-width: 90%;
+            }
+        }
     </style>
-  </head>
-  <body>
-  <div class="container">
+</head>
+<body>
+<div class="container">
     <header>
-    <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo"/>
+        <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo"/>
     </header>
     {% block content %}
-      <form method="post">
-      {% csrf_token %}
-          <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
         {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Login</button>
-      </form>
+    </form>
     {% endblock %}
-  </div>
-  </body>
+</div>
+</body>
 </html>
+
+
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#  <head>#}
+{#      {% load static %}#}
+{#    <meta charset="utf-8">#}
+{#    <title>Login To SkyMesh</title>#}
+{#    <style>#}
+{#        body{#}
+{#            font-family: sans-serif;#}
+{#            margin: 0;#}
+{#            padding: 0;#}
+{#        }#}
+{#        .container {#}
+{#            max-width: 960px;#}
+{#            margin: auto;#}
+{#            padding: 20px;#}
+{#        }#}
+{#        form {#}
+{#          max-width: 400px;#}
+{#          margin:20px auto;#}
+{#          display: flex;#}
+{#          flex-direction: column;#}
+{#          justify-content: center;#}
+{#          align-items: center;#}
+{#          padding: 20px;#}
+{#          border: 1px solid #ccc;#}
+{#          border-radius: 5px;#}
+{#          background-color: #f5f5f5;#}
+{#        }#}
+{##}
+{#        h2 {#}
+{#          font-size: 24px;#}
+{#          margin-bottom: 20px;#}
+{#          color: #007bff;#}
+{#        }#}
+{##}
+{#        input[type="text"],#}
+{#        input[type="password"] {#}
+{#          padding: 10px;#}
+{#          margin-bottom: 5px;#}
+{#          width: 100%;#}
+{#          box-sizing: border-box;#}
+{#          border-radius: 5px;#}
+{#          border: 1px solid #ccc;#}
+{#        }#}
+{##}
+{#        button {#}
+{#            margin: 20px 0;#}
+{#            cursor: pointer;#}
+{#            padding: 8px 16px;#}
+{#            font-size: 16px;#}
+{#            background-color: #007bff;#}
+{#            color: #fff;#}
+{#            border: none;#}
+{#            border-radius: 4px;#}
+{#            transition: background-color 0.3s ease;#}
+{#        }#}
+{##}
+{#        button:hover {#}
+{#            background-color: #0069d9;#}
+{#        }#}
+{##}
+{#        form {#}
+{##}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        .btn-primary {#}
+{#            background-color: #007bff;#}
+{#            border-color: #007bff;#}
+{#            color: #fff;#}
+{#        }#}
+{##}
+{#        .btn-primary:hover {#}
+{#            background-color: #0069d9;#}
+{#            border-color: #0062cc;#}
+{#        }#}
+{#        header {#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#            margin-bottom: 20px;#}
+{#        }#}
+{##}
+{#        header img {#}
+{#            height: 50px;#}
+{#        }#}
+{##}
+{#    </style>#}
+{#  </head>#}
+{#  <body>#}
+{#  <div class="container">#}
+{#    <header>#}
+{#    <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo"/>#}
+{#    </header>#}
+{#    {% block content %}#}
+{#      <form method="post">#}
+{#      {% csrf_token %}#}
+{#          <h2>Login</h2>#}
+{#        {{ form.as_p }}#}
+{#        <button class="btn btn-primary" type="submit">Login</button>#}
+{#      </form>#}
+{#    {% endblock %}#}
+{#  </div>#}
+{#  </body>#}
+{#</html>#}

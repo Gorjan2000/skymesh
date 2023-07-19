@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'mysqlFixigo': {
+    'mysql': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fixigo',
         'USER': 'gorjan',

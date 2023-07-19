@@ -149,13 +149,13 @@
         <img src="https://drive.google.com/uc?id=1RNo5pN1-gQ5AWGI6FWpeKyt8NMoGY3vD" alt="Logo" id="logo">
         <div>
             <div class="navbar-items">
-                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'index' %}">Light</a></button>
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'index' %}">Light ThingsNetwork</a></button>
+                &emsp;
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'lightIntensityFromTable' %}">Light</a></button>
                 &emsp;
                 <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'scrape' %}">Soil</a></button>
                 &emsp;
-                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location' %}">Location Table</a></button>
-                &emsp;
-                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location_map' %}">GPS Map</a></button>
+                <button class="btn btn-primary"><a class="btn btn-primary" href="{% url 'location_map' %}">Map Tracking</a></button>
                 &emsp;
             </div>
             <p id="welcomeUsername">Welcome, {{ user.username }}</p>
@@ -167,9 +167,42 @@
         </div>
     </header>
     {% block content %}
-    <h1>Location Map</h1>
+
     <div id="map"></div>
+
+
+    {% if locations %}
+        <button type="button" onclick="toggleTable()">History Data</button>
+
+        <table class="table" id="myTable" style="display: none">
+            <thead>
+                <tr>
+                    <th>Sensor ID</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Username</th>
+                    <th>Date and Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for location in locations %}
+                <tr>
+                    <td>{{ location.node_Id }}</td>
+                    <td>{{ location.lat }}</td>
+                    <td>{{ location.lng }}</td>
+                    <td>{{ location.username }}</td>
+                    <td>{{ location.datetime|date:"d-m-Y H:i:s" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        {% else %}
+    <p>No history data available.</p>
+    {% endif %}
+
     {% endblock %}
+
 </div>
 
 {##}
@@ -210,6 +243,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
+
     document.addEventListener("DOMContentLoaded", function() {
         // Create the map
         var map = L.map('map').setView([42.0069, 20.9715], 14);
@@ -287,6 +321,16 @@
             return number.toString().padStart(2, '0');
         }
     });
+
+        function toggleTable() {
+        var table = document.getElementById("myTable");
+        if (table.style.display === "none") {
+            table.style.display = "table";
+        } else {
+            table.style.display = "none";
+        }
+        }
+
 </script>
 
 {#  <script>#}

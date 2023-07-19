@@ -15,6 +15,7 @@ from django.utils import timezone
 from django import template
 from datetime import datetime
 
+
 def test_connection(request):
     # Get the 'default' database connection
     connection = connections['mysqlFixigo']
@@ -115,22 +116,46 @@ def scrape_view(request):
 
 @login_required
 @method_decorator(csrf_exempt, name='dispatch')
-def location(request):
-    locations = Location.objects.using('mysqlFixigo').all()
-    for location in locations:
-        location.datetime = datetime.strptime(location.datetime, "%Y-%m-%d %H:%M:%S")
-    context = {
-        'locations': locations
-    }
-    return render(request, 'location.html', context)
+def lightIntensityFromTable(request):
+    latestReceivedAt = None
+    latestLightIntensity = None
+
+    lights = Light.objects.using('mysql').all()
+    filtered_locations = [light for light in lights if light.username == request.user.username]
+
+    for light in filtered_locations:
+        light.datetime = datetime.strptime(light.datetime, "%H:%M %d-%m-%Y")
+        receivedAt = light.datetime
+        if latestReceivedAt is None or receivedAt > latestReceivedAt:
+            latestReceivedAt = receivedAt
+            latestLightIntensity = light.light
+
+    if latestReceivedAt is not None or latestLightIntensity is not None:
+        context = {
+            'lights': filtered_locations,
+            'latestReceivedAt': latestReceivedAt.strftime('%H:%M %d-%m-%Y'),
+            'latestLightIntensity': latestLightIntensity
+        }
+    else:
+        context = {
+            'lights': filtered_locations
+        }
+
+    return render(request, 'lightIntensityFromTable.html', context)
 
 
 @login_required
 @method_decorator(csrf_exempt, name='dispatch')
 def location_map(request):
-    locations = Location.objects.using('mysqlFixigo').all()
+    locations = Location.objects.using('mysql').all()
     for location in locations:
         location.datetime = datetime.strptime(location.datetime, "%Y-%m-%d %H:%M:%S")
-    locations_json = serialize('json', locations)
-    context = {'locations_json': locations_json}
+
+    filtered_locations = [location for location in locations if location.username == request.user.username]
+
+    filtered_locations_json = serialize('json', filtered_locations)
+    context = {
+        'locations_json': filtered_locations_json,
+        'locations': filtered_locations
+    }
     return render(request, 'location_map.html', context)

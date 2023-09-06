@@ -40,7 +40,7 @@ def scrape_soil_parameters(html_code):
     soup = BeautifulSoup(html_code, 'html.parser')
 
     # Find the specific <ul> element with the ID 'ID1'
-    ul_element = soup.find('ul', id='ID4')
+    ul_element = soup.find('ul', id='ID1')
 
     # Initialize an empty dictionary to store the parameters and their values
     soil_parameters = {}

@@ -171,25 +171,17 @@
 
     {% block content %}
     <h1>Soil Parameters</h1>
-    <h2>Node ID - 4</h2>
+    <h2>Node ID - 1</h2>
 
     {% if soil_parameters %}
     <div class="row">
         {% for parameter, value in soil_parameters.items %}
-            {% if parameter != 'Node ID' and parameter != 'Air Temperature' and parameter != 'Air Humidity' and parameter != 'Location' %}
+            {% if parameter != 'Node ID' and parameter != 'Location' %}
                 <div class="col-sm-4">
                     <div class="card info-card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                {% if parameter == 'Box Temperature' %}
-                                    <h3>Air Temperature</h3>
-                                {% else %}
-                                    {% if parameter == 'Box Humidity' %}
-                                        <h3>Air Humidity</h3>
-                                    {% else %}
-                                        <h3>{{ parameter }}</h3>
-                                    {% endif %}
-                                {% endif %}
+                                <h3>{{ parameter }}</h3>
                                 <h5 class="card-title">{{ value }}</h5>
                             </div>
                         </div>
